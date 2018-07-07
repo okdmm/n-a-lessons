@@ -1,7 +1,3 @@
-# 演習課題4
-## Hilebert行列の定義
-問題で使うHilbert行列は以下のプログラムで定義した。
-```hilbert.c
 #include<stdio.h>
 #include<math.h>
 
@@ -45,11 +41,3 @@ int main(){
   }
   printf("\n");
 }
-```
-
-## (1)
-
-## (2)
-
-## (3)
-
