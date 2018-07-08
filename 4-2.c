@@ -83,7 +83,7 @@ int main(){
         InverseL[i][j] = 1.0/L[i][j];
       }else {
         double tmp = 0.0;
-        for(k = 0; k < i; i++){
+        for(int k = 0; k < i; i++){
           tmp += L[i][k]*InverseL[k][j];
         }
         InverseL[i][j] = tmp/L[i][i];
