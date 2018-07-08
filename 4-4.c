@@ -1,9 +1,10 @@
+
 #include<stdio.h>
 #include<math.h>
 
 int main(){
   int i,j,n;
-  int N=15;
+  int N=10;
   long double Hilbelt[N][N];
 
   /*LU分解で逆行列を求める*/
@@ -18,7 +19,6 @@ int main(){
   long double MaxRow;
   long double Row[15];
 
-  /* N = 5  */
 
   /*Hilbelt行列の定義*/
   for(i = 0; i < N; i++){
@@ -172,7 +172,7 @@ int main(){
   InversRow[0] = 0.0;
   for(i=0;i<N;i++){
     for(j=0;j<N;j++){
-      InversRow[i]+= fabsl(InverseHierbert[i][j]);
+      InversRow[i]+= InverseHierbert[i][j];
     }
     printf("%d行の和 = %Lf\n",i, InversRow[i]);
   }
@@ -186,9 +186,9 @@ int main(){
   Row[0] = 0.0;
   for(i=0;i<N;i++){
     for(j=0;j<N;j++){
-      Row[i]+= fabsl(Hilbelt[i][j]);
+      Row[i]+= Hilbelt[i][j];
     }
-    printf("%d行の和 = %Lf\n",i, Row[i]);
+    printf("b[%d] = %Lf\n",i, Row[i]);
   }
   MaxRow = Row[0];
   for(i=0;i<N;i++){
