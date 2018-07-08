@@ -12,6 +12,7 @@ int main(){
   double U[15][15]; /*上三角行列*/
   double InverseL[15][15];
   double InverseU[15][15];
+  double InverseHierbert[15][15];
 
   /* N = 5  */
 
@@ -74,25 +75,96 @@ int main(){
     printf("\n");
   }
 
-  /*逆行列*/
-  for(j=0;i<5;i++){
-    for(i=0;j<5;j++){
-      if( j > i ){
+  /*Lの逆行列*/
+  printf("\nLの逆行列\n");
+  for( i = 0;i < 5; i++){
+    for( j = 0;j < 5; j++){
+      if( i < j ){
         InverseL[i][j] = 0.0;
+        printf("%f ", InverseL[i][j]);
       }else if( i == j ){
-        InverseL[i][j] = 1.0/L[i][j];
+        InverseL[i][i] = 1.0/L[i][i];
+        printf("%f ", InverseL[i][i]);
       }else {
         double tmp = 0.0;
-        for(int k = 0; k < i; i++){
+        for(int k = 0; k < i; k++){
           tmp += L[i][k]*InverseL[k][j];
         }
-        InverseL[i][j] = tmp/L[i][i];
+        InverseL[i][j] = - tmp/L[i][i];
+        printf("%f ", InverseL[i][j]);
       }
-      printf("%f", InverseL[i][j]);
     }
+    printf("\n");
   }
 
-  
-  
+  /*L検算*/
+  printf("\n検算\n");
+  for(i=0;i<5;i++){
+    for(j=0;j<5;j++){
+      double tmp = 0.0;
+     for(int k=0; k<5; k++){
+        tmp += L[i][k]*InverseL[k][j];
+     } 
+     printf("%lf ", tmp);
+    }
+    printf("\n");
+  }
 
+  /*Uの逆行列*/
+  printf("\nUの逆行列\n");
+  for( i = 0; i < 5; i++ ){
+    for(j = 0; j < 5; j++){
+      InverseU[i][j] = InverseL[j][i];
+      printf("%f ", InverseU[i][j]);
+    }
+    printf("\n");
+  }
+
+  /*U検算*/
+  printf("\n検算\n");
+  for(i=0;i<5;i++){
+    for(j=0;j<5;j++){
+      double tmp = 0.0;
+     for(int k=0; k<5; k++){
+        tmp += InverseU[i][k]*U[k][j];
+     } 
+     printf("%lf ", tmp);
+    }
+    printf("\n");
+  }
+
+  /*Hilebertの逆行列*/
+  printf("\nHilbertの逆行列\n");
+  for(i=0;i<5;i++){
+    for(j=0;j<5;j++){
+        InverseHierbert[i][j]= 0.0;
+     for(int k=0; k<5; k++){
+        InverseHierbert[i][j]+= InverseU[i][k]*InverseL [k][j];
+     } 
+     printf("%lf ", InverseHierbert[i][j]);
+    }
+    printf("\n");
+  }
+
+  /*Hilbertの検算*/
+  printf("\nHilbertの検算\n");
+  for(i=0;i<5;i++){
+    for(j=0;j<5;j++){
+      double tmp = 0.0;
+     for(int k=0; k<5; k++){
+        tmp += Hilbelt[i][k]*InverseHierbert[k][j];
+     } 
+     printf("%lf ", tmp);
+    }
+    printf("\n");
+  }
+
+  /*infinity-nolmを求める*/
+  for(i=0;i<5;i++){
+    double tmp = 0.0;
+    for(j=0;j<5;j++){
+      tmp+= InverseHierbert[i][j];
+    }
+    printf("%f\n", tmp);
+  }
 }
