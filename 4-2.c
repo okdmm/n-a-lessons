@@ -10,6 +10,8 @@ int main(){
   /*特にHilebert行列は実対象行列つまり正定置よってコレスキー分解ができる*/
   double L[15][15]; /*下三角行列*/
   double U[15][15]; /*上三角行列*/
+  double InverseL[15][15];
+  double InverseU[15][15];
 
   /* N = 5  */
 
@@ -71,4 +73,26 @@ int main(){
     }
     printf("\n");
   }
+
+  /*逆行列*/
+  for(j=0;i<5;i++){
+    for(i=0;j<5;j++){
+      if( j > i ){
+        InverseL[i][j] = 0.0;
+      }else if( i == j ){
+        InverseL[i][j] = 1.0/L[i][j];
+      }else {
+        double tmp = 0.0;
+        for(k = 0; k < i; i++){
+          tmp += L[i][k]*InverseL[k][j];
+        }
+        InverseL[i][j] = tmp/L[i][i];
+      }
+      printf("%f", InverseL[i][j]);
+    }
+  }
+
+  
+  
+
 }
