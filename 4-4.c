@@ -4,7 +4,7 @@
 int main(){
   int i,j,n,k;
   int pivot;
-  int N=15;
+  int N=5;
   long double Hilbelt[N][N];
   long double A[N][N+1];
 
@@ -101,5 +101,33 @@ int main(){
   for(i = 0; i < N; i++){
     printf("x[%d] = %Lf\n",i, x[i]);
   }
+
+
+  /*近似解との積 */
+  /*残差ノルム*/
+  for(i=0;i<N;i++){
+  Row[i] = 0.0;
+    for(j=0;j<N;j++){
+      Row[i]+=Hilbelt[i][j]*x[j];
+    }
+    Row[i] = fabsl(b[i] - Row[i]); 
+    printf("%d行の和 = %Lf\n",i, Row[i]);
+  }
+
+  MaxRow = Row[0];
+
+  printf("\n残差ノルム%Lf",MaxRow);
+  for(i=0;i<N;i++){
+    if(Row[i] > MaxRow){
+      MaxRow = Row[i];
+    }
+  }
+
+  /*誤差ノルム*/
+  printf("\n誤差ノルム");
+  for(i=0;i<N;i++){
+    printf("%Lf\n", fabsl(x[i] - 1.0));
+  }
+
 
 }
