@@ -31,6 +31,9 @@ int main(){
     printf("b[%d] = %le\n",i, b[i]);
   }
 
+  /*誤差の混入*/
+  b[0]*= 1.001; 
+
   for(i=0;i<N;i++){
     for(j=0;j<N+1;j++){
       if(j == N){
