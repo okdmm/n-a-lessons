@@ -4,7 +4,7 @@
 int main(){
   int i,j,n,k;
   int pivot;
-  int N=15;
+  int N=10;
   double Hilbelt[N][N];
   double A[N][N+1];
 
@@ -136,5 +136,5 @@ int main(){
     }
   }
 
-  printf("\n残差ノルム%le\n",MaxRow);
+  printf("\n誤差ノルム%le\n",MaxRow);
 }

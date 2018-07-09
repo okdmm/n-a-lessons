@@ -140,4 +140,6 @@ int main(){
   }
 
   printf("\n残差ノルム%le\n",MaxRow);
+
+  /*誤差の上限の確認*/
 }
