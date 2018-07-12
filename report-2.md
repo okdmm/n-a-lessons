@@ -157,13 +157,36 @@ e[11]               4.44e-16
 
 ## (4)
 #### $ \alpha = -3 $ の時
+$ k $ 回目の反復時 $ e_k = x_k - \alpha $ とする。 $ f'(\alpha) \neq 0 , f(\alpha) = 0 $ であることに注意しテイラー展開を利用すれば、ある$\theta \in \mathbb{R} $ があって
 
+$$ f(\alpha) = f(x_k) + f'(x_k)(\alpha - x_k) + \frac{f''(\theta)}{2!}(\alpha - x_k)^2 = f(x_k) - f'(x_k)e_k + \frac{f''(\theta)}{2!}{e_k}^2 $$
+
+となる。ここでニュートン法の反復式
+
+$$ x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)} $$ 
+
+から
+
+$$  x_{k+1} - \alpha = (x_k - \alpha) - \frac{f(x_k)}{f'(x_k)} = - \frac{f(x_k) - f'(x_k)e_k}{f'(x_k)} $$
+
+が成り立つ。 
+
+$$ f(x_k) - f'(x_k)e_k = - \frac{f''(\theta)}{2!}{e_k}^2,  x_{k+1} - \alpha = e_{k+1} $$
+
+と書き直せば
+
+$$ e_{k+1} = \frac{f''(\theta)}{2f'(x_k)}{e_k}^2 = C_k {e_k}^2 $$
+
+$$ C_k = \frac{f''(\theta)}{2f'(x_k)} $$
+
+である。よって二次収束する。
 
 #### $ \alpha = 1(重解) $ の時
-
+上と同様の記号を使うが、 $ f'(\alpha) = f(\alpha) = 0 $ から $ f(x) = (x - \alpha)^2 h(x) $ となるような連続関数 $ h(x) $ があることに注意して $$ x_{k+1} - \alpha = (x_k - \alpha) - \frac{f(x_k)}{f'(x_k)} = (x_k - \alpha) - \frac{(x_k - \alpha)^2 h(x_k)}{2(x_k - \alpha)h(x_k) + (x_k - \alpha)^2h'(x_k)} $$ 
+$$ e_{k+1} = \frac12e_k(1 - O(e_k)) $$
+より一次収束である。
 ## (5)
 ### 考察
 零点の次数により、収束次数が変わった。
 収束次数の違いが収束までの反復回数に影響し、収束次数が二次の時は11回程度であったのに対し、収束回数が一次の解は29回と大きく差が出た。
-
 
